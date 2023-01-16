@@ -15,7 +15,7 @@ export class AuthService {
   //authURL = 'http://localhost:8080/auth/';
   //authURL = environment.URL + 'auth/';
   authURL = environment.URL + 'login';
-  //authURL = 'https://argprograma-backend.onrender.com/login/';
+  //authURL = 'https://argprograma-backend.onrender.com/login';
   currentUser: BehaviorSubject<any>;
 
 

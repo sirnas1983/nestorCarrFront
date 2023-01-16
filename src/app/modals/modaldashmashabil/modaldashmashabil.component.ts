@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 //Importamos las librerias de formulario que vamos a utilizar
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Habilidad } from 'src/app/model/habilidad';
@@ -10,11 +10,15 @@ import { HabilidadService } from 'src/app/service/habilidad.service';
   styleUrls: ['./modaldashmashabil.component.scss']
 })
 export class ModaldashmashabilComponent implements OnInit {
+
+  @Output() actualizarComponente  = new EventEmitter<any>;
+  
   form: FormGroup;
   habilidad: string = '';
   porcentaje: number = 0;
   color: string = '';
   habi: any;
+ 
 
   //form!: FormGroup;
 
@@ -88,20 +92,19 @@ onCreate(): void{
 
   this.sHabilidad.save(this.form.value).subscribe(db => {
     alert("Fallo en la carga, intentelo nuevanente");
-
-    window.location.reload();
+    document.getElementById("botonCierreModalHabilidad").click();
+    this.actualizarComponente.emit();
   }, err=>{
     alert("Habilidad agregada");
-
-    this.form.reset();
-    window.location.reload();
-
+    document.getElementById("botonCierreModalHabilidad").click();
+    this.actualizarComponente.emit();
   });
 }
 
   limpiar(): void {
     this.form.reset();
   }
+  
   onEnviar(event:Event){
     event.preventDefault;
   if(this.form.valid){

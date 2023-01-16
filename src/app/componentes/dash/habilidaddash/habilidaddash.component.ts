@@ -49,15 +49,25 @@ export class HabilidaddashComponent implements OnInit {
     });*/
   }
 
+  ngOnChanges() : void {
+    this.cargarHabilidad();
+  }
+
   cargarHabilidad():void {
     this.sHabilidad.lista().subscribe(bd => {
       this.habilidades = bd
   });
   }
 
+  actualizarComponente(event : Event){
+    console.log("estoy mandando algo a mi padre");
+    this.cargarHabilidad();
+  }
+
   actualizarVariable(hab: Habilidad): void{
     this.habilidad =  hab;
     console.log("Funciona?")
+    
   }
 
   delete(id: number){
@@ -70,10 +80,8 @@ export class HabilidaddashComponent implements OnInit {
         this.cargarHabilidad();
     }, error =>{
       alert("Habilidad eliminada");
+      this.cargarHabilidad()
       //alert("No se pudo eliminar la habilidad");
-
-      window.location.reload();
-
     })
   }
   }

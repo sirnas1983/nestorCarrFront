@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 //Importamos las librerias de formulario que vamos a utilizar
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';//ctivatedRoute,
@@ -12,10 +12,8 @@ import { HabilidadService } from 'src/app/service/habilidad.service';
 })
 export class ModaldashedicionhabComponent implements OnInit {
   form!: FormGroup;
-  //habi: Habilidad = {id: 1, habilidad: "", porcentaje: 0, color: ""};
-  //habilidadId: number = 1; //Inicializo en  id fijo = 1
-  //id: number = 1; //le pongo id fijo
-  //Para enviar la funcion al componente padre
+
+  @Output() actualizarComponente  = new EventEmitter<any>;
   @Input() editarHabilidad : Habilidad = {
     id: 0,
     habilidad: "",
@@ -64,39 +62,20 @@ export class ModaldashedicionhabComponent implements OnInit {
 
   onUpdate(): void{
     console.log(this.form.value);
-    //const id = this.activatedRoute.snapshot.params['id'];
-    //this.habi.id = this.editarHabilidad.id;
-    //this.habi.habilidad = this.form.get('habilidad').value;
-    //this.habi.porcentaje = this.form.get('porcentaje').value;
-    //this.habi.color = this.form.get('color').value;
-    //this.sHabilidad.editHabilidad(this.editarHabilidad.id, this.habi).subscribe(
       this.sHabilidad.save(this.form.value).subscribe(
       data => {
-        //alert("error");
         document.getElementById('cerrarModalEdicionHabilidad').click();
-        //alert("la informacion fue modificada");
         alert("Error en la modificacion, intentelo nuevanente");
+        this.actualizarComponente.emit();
         this.router.navigate(['/dashboard']);
-        //document.getElementById('cerrarModalEdicionHabilidad').click();
-        //window.location.reload();
-
-        //alert("la informacion fue modificada");
-        //$("exampleModal12").modal("hide");
-        //modalService.close('exampleModal12');
         }, err =>{
         alert("la informacion fue modificada");
-        //alert("Error en la modificacion, intentelo nuevanente");
         this.router.navigate(['/dashboard']);
+        this.actualizarComponente.emit();
         document.getElementById('cerrarModalEdicionHabilidad').click();
-        //window.location.reload();
       }
     )
   }
-/*metodo para traer la info de la ddbb
-  cargarInfo(){
-    this.sHabilidad.getById(this.id).subscribe(data => {
-      this.habi = data;
-    });*/
   }
 
 

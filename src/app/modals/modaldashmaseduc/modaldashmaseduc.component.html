@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title text-dark fs-5" id="staticBackdropLabel300">Agregue Nueva Educación</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="limpiar()">X</button>
+        <button type="button" class="btn-close" id="botonCerrarModalEducacion" data-bs-dismiss="modal" aria-label="Close" (click)="limpiar()">X</button>
       </div>
       <form [formGroup]="form" (ngSubmit)="onEnviar($event)" name="educacionForm">
       <div class="modal-body letra">

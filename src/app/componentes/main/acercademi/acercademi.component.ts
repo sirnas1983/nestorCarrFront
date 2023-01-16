@@ -43,15 +43,16 @@ export class AcercademiComponent implements OnInit {
       //private personaService: PersonaService
     //Inyectar objeto router para permitir la navegacion a la pagina individual
     //private router: Router
-    ) { }
+    ) {this.cargarPersona();}
 
     ngOnInit(): void{
-      this.cargarPersona();
+      
 
     }
     cargarPersona():void {
       this.sPersona.lista().subscribe(bd => {
         this.personas = bd
+        console.log(this.personas);
     });
     }
     /*

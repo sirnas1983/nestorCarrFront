@@ -15,8 +15,14 @@
     <button type="submit" class="btn btn-close-white mx-auto"><i class="fa-sharp fa-solid fa-trash fa-2 align-items-end pt-3" (click)="delete(habilidad.id)"></i></button>
   </div>
 </div>
-<app-modaldashedicionhab [editarHabilidad] = "habilidad"></app-modaldashedicionhab> <!---->
-
+<app-modaldashedicionhab 
+    [editarHabilidad] = "habilidad"
+    (actualizarComponente) = "actualizarComponente($event)">
+    >
+</app-modaldashedicionhab> <!---->
+<app-modaldashmashabil
+    (actualizarComponente) = "actualizarComponente($event)">
+></app-modaldashmashabil>
 
 <!--Idioma
 <div class="container px-4">

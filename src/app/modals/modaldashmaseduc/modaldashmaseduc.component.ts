@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //Importamos las librerias de formulario que vamos a utilizar
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
 import { Educacion } from 'src/app/model/educacion';
 import { EducacionService } from 'src/app/service/educacion.service';
 @Component({
@@ -19,7 +20,8 @@ export class ModaldashmaseducComponent implements OnInit {
   //Inyectar en el constructor el formBuilder
   constructor(
     private formBuilder: FormBuilder,
-    private sEducacion: EducacionService
+    private sEducacion: EducacionService,
+    private router : Router
   ) {
     this.form = this.formBuilder.group({
       universidad: [''],
@@ -101,11 +103,13 @@ onCreate(): void{
   //const educa = new Educacion(this.universidad, this.logo, this.titulo, this.institucion, this.estado);
   this.sEducacion.save(this.form.value).subscribe(db => {
     alert("Fallo en la carga, intentelo nuevamente");
-    window.location.reload();
   }, err=>{
       alert("Educacion agregada");
+      document.getElementById("botonCerrarModalEducacion").click();
+      this.router.navigateByUrl('/components/dash/EducaciondashComponent', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/dashboard']);
+      }); 
       this.form.reset();
-      window.location.reload();
 
   });
 }
@@ -115,7 +119,6 @@ onCreate(): void{
   }
 
   onEnviar(event:Event){
-    event.preventDefault;
     if(this.form.valid){
      this.onCreate();
     }else{
