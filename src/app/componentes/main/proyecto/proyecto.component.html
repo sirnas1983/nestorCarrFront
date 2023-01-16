@@ -1,0 +1,83 @@
+    <section>
+      <div id="proyecto" class="1">
+        <div *ngFor="let proyec of proyectos" class="row mt-3">
+          <div id="proyecto" class="1">
+            <div class="container-fluid border rounded-3">
+              <h2>Proyectos</h2>
+              <br>
+                <div *ngFor="let proyec of proyectos" class="row mt-4">
+                    <div class="col-4 pos_izq blockquote1">
+                        <div class="pb-3">
+                            <img src="{{ proyec.logoproyecto }}" class="tam_imag" alt="..." title="Logo Argentina Programa">
+                        </div>
+                        <h3>{{ proyec.proyecto }}</h3>
+                        <h6></h6>
+                        <p>
+                            {{ proyec.anio }}
+                        </p>
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+
+                    <div class="col-7 col-md-6" >
+                        <figure class="mt-4 text-end">
+                            <blockquote class="blockquote blockquote1">
+                              <p>{{ proyec.tema }}
+                              <br>
+                                {{ proyec.temauno }}
+                              </p>
+                            </blockquote>
+                            <figcaption class="blockquote-footer">
+                               <cite title="Source Title">{{ proyec.estado }}</cite>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+                    <hr class="ps-5 w-75" />
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+          <!--
+          <div class="col-4 pos_izq ps-4 pt-5">
+              <div>
+                  <a href="#">
+                      <img src="{{ proyec.logoproyecto }}" class="tam_imag" alt="..." title="Logo Argentina Programa">
+                  </a>
+              </div>
+              <p></p>
+          </div>
+
+          <div class="col-sm-12 col-md-8 justify-content-end" >
+              <figure class="mt-4">
+                  <blockquote class="blockquote">
+                      <h2>{{ proyec.institucion }}</h2>
+                      <h4>{{ proyec.proyecto }}</h4>
+                      <h5>{{ proyec.profesion }}</h5>
+                          <p> {{ proyec.anio }}  </p>
+                          <p>{{ proyec.tema }}
+                            <br>
+                              {{ proyec.temauno }}
+                            </p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">
+                      <cite class="figcap" title="Source Title">{{ proyec.estado }}</cite>
+                  </figcaption>
+              </figure>
+          </div>
+
+          <hr class="ps-5 w-75">-->
+        </div>
+
+
+      </div>
+  </section>

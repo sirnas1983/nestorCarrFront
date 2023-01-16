@@ -1,0 +1,36 @@
+
+.about{
+  border-color: #acc3d3 !important;
+  /*margin-left: 0.3%;
+  margin-right: 0.3% !important;*/
+  color: #fff !important;
+}
+.capa0{
+  z-index: 0;
+}
+.col-3.pos_izq{
+  padding-left: 4% !important;
+}
+.capa1{
+  z-index: 1;
+}
+.text-end{
+  padding-right: 0rem !important;
+}
+h2{
+  color: #ffffff;
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
+.p{
+  padding-bottom: 2%;
+  color: #fff !important;
+ /*margin-top: 0% !important;*/
+}
+/*Posicion de mi foto*/
+.rounded-circle.posImag{
+  margin-top: -54%;
+  border-radius: 100%;
+  width: 95%;
+  margin-bottom: 2%;
+}

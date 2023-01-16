@@ -1,0 +1,106 @@
+<section>
+  <div id="laboral" class="about1">
+    <div class="container-fluid border rounded-3">
+      <h2>Experiencia Laboral</h2>
+      <!--<h2>{{ labora }}</h2>-->
+      <br />
+      <div *ngFor="let laboral of experiencialaboral" class="row mt-4">
+        <div class="col-4 pos_izq blockquote1">
+          <div>
+            <img
+              src="{{ laboral.logo }}"
+              class="tam_imag2 mb-2"
+              alt="..."
+              title="..."
+            />
+          </div>
+          <h3>{{ laboral.empresa }}</h3>
+          <h6>{{ laboral.cargo }}</h6>
+          <p>{{ laboral.inicio }} - {{ laboral.finalizacion }}</p>
+        </div>
+        <div class="col-1"></div>
+
+        <div class="col-sm-12 col-lg-6 ps-5">
+          <figure class="mt-4 text-end">
+            <blockquote class="blockquote blockquote1">
+              <p>{{ laboral.tareas }}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Someone famous in <cite title="Source Title">Source Title</cite>
+            </figcaption>
+          </figure>
+        </div>
+        <hr class="ps-5 w-75" />
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+<!--
+  <div id="laboral" class="about1">
+    <div *ngFor="let laboral of experiencialaboral" class="row mt-3">
+
+      <div class="col-4 pos_izq ps-4 pt-3">
+          <div>
+              <img [src]="laboral.logo" class="tam_imag2" alt="..." title="...">
+          </div>
+          <h3 class="mt-2">{{ laboral.empresa }}</h3>
+          <h5>{{ laboral.cargo }}</h5>
+          <h4>{{ laboral.inicio }}</h4>
+          <h4>{{ laboral.finalizacion }}</h4>
+      </div>
+
+
+      <div class="col-sm-12 col-md-8 justify-content-end" >
+          <figure class="mt-4">
+              <blockquote class="blockquote">
+                  <p>{{ laboral.tareas}}</p>
+              </blockquote>
+              <figcaption class="blockquote-footer">
+                Someone famous in <cite class="figcap" title="Source Title">Source Title</cite>
+              </figcaption>
+          </figure>
+          <hr>
+
+      </div>
+      <hr class="ps-5 w-75">
+    </div>
+
+    <div class="container-fluid border rounded-3">
+      <h2>{{ labora }}</h2>
+      <br />
+      <div *ngFor="let laboral of experiencialaboral" class="row mt-4">
+        <div class="col-4 pos_izq blockquote1">
+          <div>
+            <img
+              src="{{ laboral.logoempresa }}"
+              class="tam_imag2"
+              alt="..."
+              title="..."
+            />
+          </div>
+          <h3>{{ laboral.empresa }}</h3>
+          <h6>{{ laboral.cargo }}</h6>
+          <p>{{ laboral.inicio }} - {{ laboral.final }}</p>
+        </div>
+        <div class="col-1"></div>
+
+        <div class="col-sm-12 col-lg-6 ps-5">
+          <figure class="mt-4 text-end">
+            <blockquote class="blockquote blockquote1">
+              <p>{{ laboral.tareas }}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+              Someone famous in <cite title="Source Title">Source Title</cite>
+            </figcaption>
+          </figure>
+        </div>
+        <hr class="ps-5 w-75" />
+      </div>
+    </div>-->
+
+</section>
