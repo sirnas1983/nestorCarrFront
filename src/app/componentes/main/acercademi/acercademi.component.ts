@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Banner } from 'src/app/model/banner';
 import { Persona } from 'src/app/model/persona';
+import { BannerService } from 'src/app/service/banner.service';
 import { PersonaService } from 'src/app/service/persona.service';
 //import { InfoService } from '../../../service/info/info.service';
 
@@ -21,6 +23,15 @@ export class AcercademiComponent implements OnInit {
     acercademi: "",
     imageprincipal: ""
   };
+
+  banners : Banner[] = [];
+  banner : Banner = {
+    id: 0,
+    carouselimag:'',
+    carouselimage: '',
+    carouselimagen: '',
+    imageprincipal:''
+  }
   //Esta es una manera pero no la correcta
   //nombre ='Nestor Alfredo';
   //apellido = "Carretino";
@@ -39,14 +50,14 @@ export class AcercademiComponent implements OnInit {
     constructor(
     //Inyectar el Servicio para tener acceso en la Clase a los Metodos
       //private infoService: InfoService,
-      private sPersona:PersonaService
+      private sPersona:PersonaService,
+      private sBanner : BannerService
       //private personaService: PersonaService
     //Inyectar objeto router para permitir la navegacion a la pagina individual
     //private router: Router
     ) {this.cargarPersona();}
 
     ngOnInit(): void{
-      
 
     }
     cargarPersona():void {
@@ -54,6 +65,9 @@ export class AcercademiComponent implements OnInit {
         this.personas = bd
         console.log(this.personas);
     });
+      this.sBanner.lista().subscribe(data=>{
+        this.banner = data[0];
+      })
     }
     /*
   ngOnInit(): void {

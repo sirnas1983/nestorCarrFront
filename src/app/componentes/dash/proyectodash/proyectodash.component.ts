@@ -55,6 +55,11 @@ proyecto : Proyecto = {
   });
   }
 
+  actualizarComponente(event : Event){
+    console.log("estoy mandando algo a mi padre");
+    this.cargarProyecto();
+  }
+
   actualizarVariable(pro: Proyecto): void{
     this.proyecto =  pro;
     console.log("Funciona?");

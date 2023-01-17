@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { Educacion } from 'src/app/model/educacion';
 import { EducacionService } from 'src/app/service/educacion.service';
+
 @Component({
   selector: 'app-modaldashmaseduc',
   templateUrl: './modaldashmaseduc.component.html',
@@ -35,11 +36,11 @@ export class ModaldashmaseducComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      universidad: [''],
-      logo: [''],
-      titulo: [''],
-      institucion: [''],
-      estado: [''],
+      universidad: ['', [Validators.required]],
+      logo: ['', [Validators.required]],
+      titulo: ['', [Validators.required]],
+      institucion: ['', [Validators.required]],
+      estado: ['', [Validators.required]],
 
   })
 }
@@ -103,12 +104,14 @@ onCreate(): void{
   //const educa = new Educacion(this.universidad, this.logo, this.titulo, this.institucion, this.estado);
   this.sEducacion.save(this.form.value).subscribe(db => {
     alert("Fallo en la carga, intentelo nuevamente");
+    //window.location.reload();
   }, err=>{
       alert("Educacion agregada");
       document.getElementById("botonCerrarModalEducacion").click();
       this.router.navigateByUrl('/components/dash/EducaciondashComponent', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/dashboard']);
-      }); 
+       //window.location.reload();
+      });
       this.form.reset();
 
   });

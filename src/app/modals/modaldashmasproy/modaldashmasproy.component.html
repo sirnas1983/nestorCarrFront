@@ -4,7 +4,7 @@
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel600">Agregar</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="limpiar()">X</button>
+              <button type="button" id="botonCierreModalProyecto" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="limpiar()">X</button>
           </div>
         <form [formGroup]="form" (ngSubmit)="onEnviar($event)" name="proyectosForm">
           <div class="modal-body letra">

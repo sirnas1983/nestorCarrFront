@@ -9,6 +9,7 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
   styleUrls: ['./edicionmasproy.component.scss']
 })
 export class EdicionmasproyComponent implements OnInit {
+  
   form: FormGroup;
   institucion: string = "";
   proyecto: string = "";

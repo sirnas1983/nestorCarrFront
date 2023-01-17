@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //Importamos las librerias de formulario que vamos a utilizar
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
 import { Laboral } from 'src/app/model/laboral';
 import { LaboralService } from 'src/app/service/laboral.service';
 
@@ -10,7 +11,7 @@ import { LaboralService } from 'src/app/service/laboral.service';
   styleUrls: ['./modaldashmaslab.component.scss']
 })
 export class ModaldashmaslabComponent implements OnInit {
-  form: FormGroup;
+  form!: FormGroup;
   empresa: string = '';
   logoempresa: string = '';
   cargo: string = '';
@@ -21,7 +22,8 @@ export class ModaldashmaslabComponent implements OnInit {
    //Inyectar en el constructor el formBuilder
   constructor(
     private formBuilder: FormBuilder,
-    private sLaboral: LaboralService
+    private sLaboral: LaboralService,
+    private router : Router
   ) {
     this.form = this.formBuilder.group({
       empresa: [''],
@@ -32,16 +34,15 @@ export class ModaldashmaslabComponent implements OnInit {
       tareas: [''],
 
     })
-
   }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       empresa: ['', [Validators.required]],
-     logoempresa: ['', [Validators.required]],
+      logoempresa: ['', [Validators.required]],
       cargo: ['', Validators.required],
       inicio: ['', [Validators.required]],
-     finalizacion: ['', [Validators.required]],
+      finalizacion: ['', [Validators.required]],
       tareas: ['', Validators.required],
 
     })
@@ -112,14 +113,21 @@ get TareasValid(){
 }
 
 onCreate(): void{
-  const labo = new Laboral(this.empresa, this.logoempresa, this.cargo, this.inicio, this.finalizacion, this.tareas);
-  this.sLaboral.save(labo).subscribe(db => {
+  console.log(this.form.value);
+  //const labo = new Laboral(this.empresa, this.logoempresa, this.cargo, this.inicio, this.finalizacion, this.tareas);
+  this.sLaboral.save(this.form.value).subscribe(db => {
     alert("Fallo la carga, intentelo nuevamente");
-    window.location.reload();
+   // window.location.reload();
   }, err=>{
       alert("Experiencia laboral agregada")
+      document.getElementById("botonCerrarMasLaboral").click();
+      this.router.navigateByUrl('/components/dash/LaboraldashComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/dashboard']);
+
+      });
       this.form.reset();
-      window.location.reload();
+      //this.form.reset();
+      //window.location.reload();
 
   });
 }
@@ -129,7 +137,7 @@ onCreate(): void{
   }
 
   onEnviar(event:Event){
-    event.preventDefault;
+   // event.preventDefault;
     if(this.form.valid){
      this.onCreate();
     }else{

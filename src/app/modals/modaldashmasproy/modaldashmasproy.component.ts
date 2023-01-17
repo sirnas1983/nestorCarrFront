@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 //Importamos las librerias de formulario que vamos a utilizar
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Proyecto } from 'src/app/model/proyecto';
@@ -10,6 +10,9 @@ import { ProyectoService } from 'src/app/service/proyecto.service';
   styleUrls: ['./modaldashmasproy.component.scss']
 })
 export class ModaldashmasproyComponent implements OnInit {
+
+  @Output() actualizarComponente  = new EventEmitter<any>();
+
   form: FormGroup;
   institucion: string = '';
   proyecto: string = "";
@@ -19,6 +22,7 @@ export class ModaldashmasproyComponent implements OnInit {
   temauno: string = '';
   anio: string = '';
   estado: string = "";
+  proye: any;
 
 
   //Inyectar en el constructor el formBuilder
@@ -32,7 +36,7 @@ export class ModaldashmasproyComponent implements OnInit {
       profesion: [''],
       logoproyecto: [''],
       tema: [''],
-      temauno: ['', [Validators.required]],
+      temauno: [''],
       anio: [''],
       estado: [''],
     })
@@ -114,12 +118,15 @@ onCreate(): void{
   this.sProyecto.save(this.form.value).subscribe(db => {
     //alert("Proyecto agregado");
     alert("Fallo en la carga, intentelo nuevamente");
-
-    window.location.reload();
+    document.getElementById("botonCierreModalProyecto").click();
+    this.actualizarComponente.emit();
+    //window.location.reload();
   }, err=>{
       alert("Proyecto agregado");
-      this.form.reset();
-      window.location.reload();
+      document.getElementById("botonCierreModalProyecto").click();
+      this.actualizarComponente.emit();
+      //this.form.reset();
+      //window.location.reload();
 
   });
 }

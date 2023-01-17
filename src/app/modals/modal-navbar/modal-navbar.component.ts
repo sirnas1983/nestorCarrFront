@@ -47,7 +47,7 @@ ngOnInit(): void {
   if(this.tokenService.getToken()){
     this.isLogged = true;
     this.isLogginFail = false;
-    this.roles = this.tokenService.getAuthorities();
+    this.roles = this.tokenService.getAuthorities() || [''];
   }else{
     this.isLogged = false;
   }
