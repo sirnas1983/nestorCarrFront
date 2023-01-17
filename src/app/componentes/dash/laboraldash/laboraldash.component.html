@@ -44,8 +44,8 @@
   </div>
   <hr class="ps-5 w-75">
 </div>
-<app-modaldashedicionlab [editarLaboral] = "laboral"></app-modaldashedicionlab>
-
+<app-modaldashedicionlab [editarLaboral] = "laboral" (actualizarComponente) = "actualizarComponente($event)"></app-modaldashedicionlab>
+<app-modaldashmaslab (actualizarComponente) = "actualizarComponente($event)"></app-modaldashmaslab>
 <!--
 <div class="row mt-3">
 

@@ -4,16 +4,16 @@
   <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title text-dark fs-5" id="staticBackdropLabel200">Agregue Nueva Experiencia Laboral</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="limpiar()">X</button>
+        <button type="button" class="btn-close" id="botonCerrarMasLaboral" data-bs-dismiss="modal" aria-label="Close" (click)="limpiar()">X</button>
       </div>
     <form [formGroup]="form" (ngSubmit)="onEnviar($event)" name="experiencialaboralForm">
       <div class="modal-body letra">
           <div class="">
-            <input type="text" formControlName="logoempresa" class="form-control border mb-2" id="logoempresa" placeholder="Logoempresa" [(ngModel)]="logoempresa" [ngClass]="{'is-invalid': Logoempresa?.errors && Logoempresa?.touched, 'is-valid': !Logoempresa?.errors && Logoempresa?.touched}" >
+            <input type="text" formControlName="logo" class="form-control border mb-2" id="logoempresa" placeholder="Logoempresa" [(ngModel)]="logo" [ngClass]="{'is-invalid': Logo?.errors && Logo?.touched, 'is-valid': !Logo?.errors && Logo?.touched}" >
             <label for="logoempresa" class="form-label">Logo Empresa</label>
             <p class="help-block py-3"></p>
-            <div *ngIf="Logoempresa?.errors && Logoempresa?.touched">
-              <p *ngIf="Logoempresa?.hasError('required')" class="text-danger">
+            <div *ngIf="Logo?.errors && Logo?.touched">
+              <p *ngIf="Logo?.hasError('required')" class="text-danger">
                 El logo de la empresa es requerido
               </p>
             </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 //Importamos las librerias de formulario que vamos a utilizar
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
@@ -13,12 +13,14 @@ import { LaboralService } from 'src/app/service/laboral.service';
 export class ModaldashmaslabComponent implements OnInit {
   form!: FormGroup;
   empresa: string = '';
-  logoempresa: string = '';
+  logo: string = '';
   cargo: string = '';
   inicio: string = '';
   finalizacion: string = '';
   tareas: string = '';
-
+  
+  @Output() actualizarComponente = new EventEmitter<any>();
+    
    //Inyectar en el constructor el formBuilder
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +29,7 @@ export class ModaldashmaslabComponent implements OnInit {
   ) {
     this.form = this.formBuilder.group({
       empresa: [''],
-     logoempresa: [''],
+     logo: [''],
       cargo: [''],
       inicio: [''],
      finalizacion: [''],
@@ -39,7 +41,7 @@ export class ModaldashmaslabComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       empresa: ['', [Validators.required]],
-      logoempresa: ['', [Validators.required]],
+      logo: ['', [Validators.required]],
       cargo: ['', Validators.required],
       inicio: ['', [Validators.required]],
       finalizacion: ['', [Validators.required]],
@@ -62,11 +64,11 @@ get EmpresaValid(){
   return this.Empresa?.touched && !this.Empresa.valid;
 }*/
 
-get Logoempresa(){
+get Logo(){
   return this.form.get("logoempresa");
 }
 get LogoempresaValid(){
-  return this.Logoempresa?.touched && !this.Logoempresa?.valid;
+  return this.Logo?.touched && !this.Logo?.valid;
 }
 /*
 get LogoempresaValid(){
@@ -117,17 +119,16 @@ onCreate(): void{
   //const labo = new Laboral(this.empresa, this.logoempresa, this.cargo, this.inicio, this.finalizacion, this.tareas);
   this.sLaboral.save(this.form.value).subscribe(db => {
     alert("Fallo la carga, intentelo nuevamente");
-   // window.location.reload();
+   this.actualizarComponente.emit();
   }, err=>{
       alert("Experiencia laboral agregada")
       document.getElementById("botonCerrarMasLaboral").click();
       this.router.navigateByUrl('/components/dash/LaboraldashComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/dashboard']);
-
+      this.actualizarComponente.emit();
       });
       this.form.reset();
-      //this.form.reset();
-      //window.location.reload();
+      this.actualizarComponente.emit();
 
   });
 }

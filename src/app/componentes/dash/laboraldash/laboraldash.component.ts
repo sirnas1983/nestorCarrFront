@@ -34,6 +34,11 @@ export class LaboraldashComponent implements OnInit {
     this.cargarLaboral();
   }
 
+  actualizarComponente(event : Event){
+    console.log("estoy mandando algo a mi padre");
+    this.cargarLaboral();
+  }
+
   cargarLaboral():void {
     this.sLaboral.lista().subscribe(bd => {
       this.experiencialaboral = bd
